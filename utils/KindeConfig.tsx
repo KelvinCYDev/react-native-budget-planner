@@ -1,0 +1,17 @@
+import { KindeSDK } from "@kinde-oss/react-native-sdk-0-7x";
+
+const YOUR_KINDE_ISSUER = process.env.EXPO_PUBLIC_KINDE_ISSUER_URL!;
+const YOUR_KINDE_REDIRECT_URI =
+  process.env.EXPO_PUBLIC_KINDE_POST_CALLBACK_URL!;
+const YOUR_KINDE_LOGOUT_REDIRECT_URI =
+  process.env.EXPO_PUBLIC_KINDE_POST_LOGOUT_REDIRECT_URL!;
+const YOUR_KINDE_CLIENT_ID = process.env.EXPO_PUBLIC_KINDE_CLIENT_ID!;
+
+const client = new KindeSDK(
+  YOUR_KINDE_ISSUER,
+  YOUR_KINDE_REDIRECT_URI,
+  YOUR_KINDE_CLIENT_ID,
+  YOUR_KINDE_LOGOUT_REDIRECT_URI
+);
+
+export default client;

@@ -1,14 +1,11 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import services from "@/utils/services";
 import { useEffect } from "react";
 import { useRouter } from "expo-router";
+import client from "@/utils/KindeConfig";
 
 export default function Index() {
   const router = useRouter();
-
-  useEffect(() => {
-    checkUserAuth();
-  }, []);
 
   /**
    * Used to check user Is already auth or not
@@ -20,10 +17,27 @@ export default function Index() {
     }
   };
 
+  const handleLogout = async () => {
+    const loggedOut = await client.logout();
+    if (loggedOut) {
+      await services.storeData("login", "false");
+      router.replace("/login");
+      // User was logged out
+    }
+  };
+
+  useEffect(() => {
+    checkUserAuth();
+  }, []);
+
   return (
     <View className="flex flex-1 justify-center items-center">
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <View className="w-10 h-10 bg-blue-500" />
+      <TouchableOpacity
+        className="bg-white py-[15px] px-[5px] rounded-[20px] mt-[30px]"
+        onPress={handleLogout}
+      >
+        <Text className="text-center color-[#8B42FC]">Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 }
