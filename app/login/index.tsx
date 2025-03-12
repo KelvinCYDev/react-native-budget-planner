@@ -4,7 +4,7 @@ import loginBg from "@/assets/images/loginbg.png";
 import Colors from "@/utils/Colors";
 import services from "@/utils/services";
 import { useRouter } from "expo-router";
-import client from "@/utils/KindeConfig";
+import { client } from "@/utils/KindeConfig";
 
 export default function Login() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function Login() {
         source={loginBg}
         className="w-[200px] h-[400px] mt-20 border-[7px] rounded-3xl border-black"
       />
-      <View className="bg-[#8B42FC] w-full h-full p-5 -mt-7 rounded-t-[30px]">
+      <View className="bg-PRIMARY w-full h-full p-5 -mt-7 rounded-t-[30px]">
         <Text className="text-[35px] font-bold text-center color-white">
           Personal Budget Planner
         </Text>
@@ -36,9 +36,9 @@ export default function Login() {
           className="bg-white py-[15px] px-[5px] rounded-[20px] mt-[30px]"
           onPress={handleSignIn}
         >
-          <Text className="text-center color-[#8B42FC]">Login/Signup</Text>
+          <Text className="text-center color-PRIMARY">Login/Signup</Text>
         </TouchableOpacity>
-        <Text className="text=[13px] color-[#B6B4B4] mt-[10px]">
+        <Text className="text=[13px] color-GRAY mt-[10px]">
           * By login/signup you will agree to our tearms and conditions
         </Text>
       </View>

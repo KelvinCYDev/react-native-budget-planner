@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import services from "@/utils/services";
 import { useEffect } from "react";
 import { useRouter } from "expo-router";
-import client from "@/utils/KindeConfig";
+import { client } from "@/utils/KindeConfig";
 
 export default function Index() {
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function Index() {
         className="bg-white py-[15px] px-[5px] rounded-[20px] mt-[30px]"
         onPress={handleLogout}
       >
-        <Text className="text-center color-[#8B42FC]">Logout</Text>
+        <Text className="text-center color-PRIMARY">Logout</Text>
       </TouchableOpacity>
     </View>
   );

@@ -7,11 +7,9 @@ const YOUR_KINDE_LOGOUT_REDIRECT_URI =
   process.env.EXPO_PUBLIC_KINDE_POST_LOGOUT_REDIRECT_URL!;
 const YOUR_KINDE_CLIENT_ID = process.env.EXPO_PUBLIC_KINDE_CLIENT_ID!;
 
-const client = new KindeSDK(
+export const client = new KindeSDK(
   YOUR_KINDE_ISSUER,
   YOUR_KINDE_REDIRECT_URI,
   YOUR_KINDE_CLIENT_ID,
   YOUR_KINDE_LOGOUT_REDIRECT_URI
 );
-
-export default client;
