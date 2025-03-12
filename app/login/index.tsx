@@ -11,7 +11,6 @@ export default function Login() {
 
   const handleSignIn = async () => {
     const token = await client.login().catch((err) => console.log(err));
-    console.log("btn click");
     if (token) {
       // User was authenticated
       await services.storeData("login", "true");
