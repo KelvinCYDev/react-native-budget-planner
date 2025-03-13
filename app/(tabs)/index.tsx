@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import services from "@/utils/services";
 import { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { client } from "@/utils/KindeConfig";
 import { supabase } from "@/utils/SupabaseConfig";
 import { UserProfile } from "@kinde-oss/react-native-sdk-0-7x";
@@ -9,6 +9,7 @@ import Colors from "@/utils/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CircularChart from "@/components/CircularChart";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Index() {
   const router = useRouter();
@@ -51,7 +52,7 @@ export default function Index() {
   }, []);
 
   return (
-    <View className="flex">
+    <View className="flex-1">
       <SafeAreaView
         edges={["top"]}
         style={{ backgroundColor: Colors.PRIMARY }}
@@ -60,6 +61,9 @@ export default function Index() {
         <Header />
         <CircularChart />
       </View>
+      <Link href={"/add-new-category"} className="absolute bottom-3 right-3">
+        <Ionicons name="add-circle" size={64} color={Colors.PRIMARY} />
+      </Link>
     </View>
   );
 }
