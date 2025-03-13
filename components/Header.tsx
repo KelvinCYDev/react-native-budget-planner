@@ -29,20 +29,10 @@ export default function Header() {
       />
       <View className="flex-1 flex-row items-center justify-between">
         <View>
-          <Text
-            style={{
-              color: Colors.WHITE,
-              fontSize: 16,
-            }}
-          >
+          <Text className="text-WHITE text-xl font-[outfit-regular]">
             Welcome,
           </Text>
-          <Text
-            style={{
-              color: Colors.WHITE,
-              fontSize: 20,
-            }}
-          >
+          <Text className="text-WHITE text-2xl font-[outfit-bold]">
             {user?.given_name}
           </Text>
         </View>

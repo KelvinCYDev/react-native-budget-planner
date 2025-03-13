@@ -10,8 +10,8 @@ function CircularChart() {
   const [sliceColor, setSliceColor] = useState([Colors.GRAY]);
   return (
     <View className="bg-white p-5 rounded-3xl shadow-md">
-      <Text className="text-xl mb-5">
-        Total Estimate: <Text className="font-bold">$0</Text>
+      <Text className="text-xl font-[outfit-regular] mb-5">
+        Total Estimate: <Text className="font-[outfit-bold]">$0</Text>
       </Text>
       <View className="mt-2 flex flex-row gap-10">
         <PieChart
@@ -27,7 +27,7 @@ function CircularChart() {
             size={24}
             color={Colors.GRAY}
           />
-          <Text>NA</Text>
+          <Text className="font-[outfit-regular]">NA</Text>
         </View>
       </View>
     </View>
