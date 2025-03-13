@@ -5,6 +5,10 @@ import { useRouter } from "expo-router";
 import { client } from "@/utils/KindeConfig";
 import { supabase } from "@/utils/SupabaseConfig";
 import { UserProfile } from "@kinde-oss/react-native-sdk-0-7x";
+import Colors from "@/utils/Colors";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "@/components/Header";
+import CircularChart from "@/components/CircularChart";
 
 export default function Index() {
   const router = useRouter();
@@ -43,18 +47,19 @@ export default function Index() {
 
   useEffect(() => {
     checkUserAuth();
-    getCategoryList();
+    // getCategoryList();
   }, []);
 
   return (
-    <View className="flex flex-1 justify-center items-center">
-      <Text>Hello {user.given_name}</Text>
-      <TouchableOpacity
-        className="bg-white py-[15px] px-[5px] rounded-[20px] mt-[30px]"
-        onPress={handleLogout}
-      >
-        <Text className="text-center color-PRIMARY">Logout</Text>
-      </TouchableOpacity>
+    <View className="flex">
+      <SafeAreaView
+        edges={["top"]}
+        style={{ backgroundColor: Colors.PRIMARY }}
+      />
+      <View className="flex gap-10 px-5 py-2 bg-PRIMARY h-[150px]">
+        <Header />
+        <CircularChart />
+      </View>
     </View>
   );
 }
