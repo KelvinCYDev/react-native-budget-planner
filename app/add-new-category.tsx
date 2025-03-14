@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ToastAndroid,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import Toast from "react-native-simple-toast";
 import Colors from "@/utils/Colors";
 import ColorPicker from "@/components/ColorPicker";
@@ -22,6 +16,7 @@ export default function AddNewCategory() {
   const [loading, setLoading] = useState(false);
 
   const onCreateCategory = async () => {
+    setLoading(true);
     const user = await client.getUserDetails();
     const { data, error } = await supabase
       .from("Category")
@@ -37,13 +32,13 @@ export default function AddNewCategory() {
       .select();
     console.log(data);
     if (data) {
-      // router.replace({
-      //   pathname:'/category-detail',
-      //   params:{
-      //     categoryId:data[0].id
-      //   }
-      // })
-      // setLoading(false)
+      router.replace({
+        pathname: "/category-detail",
+        params: {
+          categoryId: data[0].id,
+        },
+      });
+      setLoading(false);
       Toast.show("Category Created!", Toast.SHORT);
     }
     if (error) {

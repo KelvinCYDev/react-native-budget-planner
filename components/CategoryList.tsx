@@ -16,6 +16,14 @@ export default function CategoryList({
     });
   };
 
+  const calculateTotalCost = (categoryItems: any[]) => {
+    let totalCost = 0;
+    categoryItems.forEach((item) => {
+      totalCost = totalCost + item.cost;
+    });
+    return totalCost;
+  };
+
   return (
     <View>
       <Text className="font-[outfit-bold] text-3xl mt-10 mb-3">
@@ -45,7 +53,9 @@ export default function CategoryList({
                   {category?.CategoryItems?.length} Items
                 </Text>
               </View>
-              <Text className="text-lg font-[outfit-bold]">$5000</Text>
+              <Text className="text-lg font-[outfit-bold]">
+                ${calculateTotalCost(category?.CategoryItems)}
+              </Text>
             </View>
           </TouchableOpacity>
         );
