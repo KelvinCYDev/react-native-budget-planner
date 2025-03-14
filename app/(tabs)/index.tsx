@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 import services from "@/utils/services";
 import { useEffect, useState } from "react";
 import { Link, useRouter } from "expo-router";
@@ -10,11 +10,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CircularChart from "@/components/CircularChart";
 import { Ionicons } from "@expo/vector-icons";
+import CategoryList from "@/components/CategoryList";
 
 export default function Index() {
   const router = useRouter();
   const [user, setUser] = useState({} as UserProfile);
-
+  const [categoryList, setCategoryList] = useState([] as any[] | null);
+  const [loading, setLoading] = useState(false);
   /**
    * Used to check user Is already auth or not
    */
@@ -38,17 +40,19 @@ export default function Index() {
   };
 
   const getCategoryList = async () => {
+    setLoading(true);
     const user = await client.getUserDetails();
     const { data, error } = await supabase
       .from("Category")
-      .select("*")
+      .select("*,CategoryItems(*)")
       .eq("created_by", user.email);
-    console.log("Data", data);
+    setCategoryList(data);
+    data && setLoading(false);
   };
 
   useEffect(() => {
     checkUserAuth();
-    // getCategoryList();
+    getCategoryList();
   }, []);
 
   return (
@@ -57,9 +61,21 @@ export default function Index() {
         edges={["top"]}
         style={{ backgroundColor: Colors.PRIMARY }}
       />
-      <View className="flex gap-10 px-5 py-2 bg-PRIMARY h-[150px]">
+      <View className="bg-PRIMARY h-[280px] w-full absolute" />
+      <View className="flex gap-1 py-2">
         <Header />
-        <CircularChart />
+        <ScrollView
+          className="px-5 pt-10 overflow-visible"
+          refreshControl={
+            <RefreshControl
+              onRefresh={() => getCategoryList()}
+              refreshing={loading}
+            />
+          }
+        >
+          <CircularChart />
+          <CategoryList categoryList={categoryList} />
+        </ScrollView>
       </View>
       <Link href={"/add-new-category"} className="absolute bottom-3 right-3">
         <Ionicons name="add-circle" size={64} color={Colors.PRIMARY} />

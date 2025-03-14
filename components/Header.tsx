@@ -18,7 +18,7 @@ export default function Header() {
   }, []);
 
   return (
-    <View className="flex flex-row items-center gap-3">
+    <View className="flex flex-row items-center gap-3 px-5">
       <Image
         source={{ uri: user?.picture }}
         style={{
