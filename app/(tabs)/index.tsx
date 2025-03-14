@@ -15,7 +15,7 @@ import CategoryList from "@/components/CategoryList";
 export default function Index() {
   const router = useRouter();
   const [user, setUser] = useState({} as UserProfile);
-  const [categoryList, setCategoryList] = useState([] as any[] | null);
+  const [categoryList, setCategoryList] = useState([] as categoryListType);
   const [loading, setLoading] = useState(false);
   /**
    * Used to check user Is already auth or not

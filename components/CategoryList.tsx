@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 export default function CategoryList({
   categoryList,
 }: {
-  categoryList: any[] | null;
+  categoryList: categoryListType;
 }) {
   const onCategoryClick = (category: any) => {
     router.push({
