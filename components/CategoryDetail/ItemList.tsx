@@ -14,7 +14,7 @@ export default function ItemList({
       <View className="mt-8">
         {categoryData?.CategoryItems?.length > 0 ? (
           categoryData?.CategoryItems?.map((item: any, index: number) => (
-            <>
+            <View key={index}>
               <TouchableOpacity
                 key={index}
                 className="flex flex-row justify-between items-center"
@@ -45,9 +45,9 @@ export default function ItemList({
             </View>
             } */}
               {categoryData?.CategoryItems.length - 1 != index && (
-                <View className="border-1 mt-5 border-GRAY"></View>
+                <View className="border-2 mt-5 border-GRAY"></View>
               )}
-            </>
+            </View>
           ))
         ) : (
           <Text className="font-[outfit-bold] text-xl text-GRAY">

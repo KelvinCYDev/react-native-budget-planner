@@ -29,6 +29,20 @@ export default function RootLayout() {
           headerTitle: "Add New Category",
         }}
       />
+      <Stack.Screen
+        name="add-new-category-item"
+        options={{
+          presentation: "modal",
+          headerShown: true,
+          headerTitle: "Add New Item",
+        }}
+      />
+      <Stack.Screen
+        name="category-detail"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }
