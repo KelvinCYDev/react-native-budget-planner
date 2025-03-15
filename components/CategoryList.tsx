@@ -25,7 +25,7 @@ export default function CategoryList({
   };
 
   return (
-    <View>
+    <View className="mb-20">
       <Text className="font-[outfit-bold] text-3xl mt-10 mb-3">
         Latest Budget
       </Text>

@@ -70,7 +70,7 @@ export default function Index() {
       <View className="bg-PRIMARY h-[230px] w-full absolute" />
       <View className="h-full">
         <ScrollView
-          className="px-5 pt-44 overflow-visible"
+          className="px-5 mt-48 overflow-visible"
           contentContainerStyle={{ flex: 0 }}
           onScroll={handleScroll}
           refreshControl={

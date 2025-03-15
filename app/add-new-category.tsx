@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import Toast from "react-native-simple-toast";
 import Colors from "@/utils/Colors";
 import ColorPicker from "@/components/ColorPicker";
@@ -85,11 +91,15 @@ export default function AddNewCategory() {
         disabled={!categoryName || !totalBudget || loading}
         onPress={() => onCreateCategory()}
       >
-        <Text
-          style={{ textAlign: "center", fontSize: 16, color: Colors.WHITE }}
-        >
-          Create
-        </Text>
+        {loading ? (
+          <ActivityIndicator color={Colors.WHITE} />
+        ) : (
+          <Text
+            style={{ textAlign: "center", fontSize: 16, color: Colors.WHITE }}
+          >
+            Create
+          </Text>
+        )}
       </TouchableOpacity>
     </View>
   );

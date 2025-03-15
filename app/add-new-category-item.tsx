@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { supabase } from "@/utils/SupabaseConfig";
@@ -138,9 +139,13 @@ export default function AddNewCategoryItem() {
           disabled={!name || !cost || loading}
           onPress={() => onClickAdd()}
         >
-          <Text className="text-center font-[outfit-bold] text-lg text-WHITE">
-            Add
-          </Text>
+          {loading ? (
+            <ActivityIndicator color={Colors.WHITE} />
+          ) : (
+            <Text className="text-center font-[outfit-bold] text-lg text-WHITE">
+              Add
+            </Text>
+          )}
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
