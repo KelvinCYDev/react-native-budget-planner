@@ -11,18 +11,18 @@ export default function ItemList({
   return (
     <View className="mt-10">
       <Text className="font-[outfit-bold] text-xl">Item List</Text>
-      <View className="mt-8">
+      <View className="mt-5">
         {categoryData?.CategoryItems?.length > 0 ? (
           categoryData?.CategoryItems?.map((item: any, index: number) => (
             <View key={index}>
               <TouchableOpacity
                 key={index}
-                className="flex flex-row justify-between items-center"
+                className="flex flex-row justify-between items-center mt-5"
                 onPress={() => setExpandItem(index)}
               >
                 <Image
                   source={{ uri: item.image }}
-                  className="w-20 h-20 rounded-xl"
+                  className="w-24 h-24 rounded-xl"
                 />
                 <View style={{ flex: 1, marginLeft: 10 }}>
                   <Text className="font-[outfit-bold] text-2xl">
@@ -45,7 +45,7 @@ export default function ItemList({
             </View>
             } */}
               {categoryData?.CategoryItems.length - 1 != index && (
-                <View className="border-2 mt-5 border-GRAY"></View>
+                <View className="border mt-5 border-GRAY"></View>
               )}
             </View>
           ))

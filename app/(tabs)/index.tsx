@@ -6,7 +6,6 @@ import { client } from "@/utils/KindeConfig";
 import { supabase } from "@/utils/SupabaseConfig";
 import { UserProfile } from "@kinde-oss/react-native-sdk-0-7x";
 import Colors from "@/utils/Colors";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CircularChart from "@/components/CircularChart";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,6 +16,17 @@ export default function Index() {
   const [user, setUser] = useState({} as UserProfile);
   const [categoryList, setCategoryList] = useState([] as categoryListType);
   const [loading, setLoading] = useState(false);
+  const [blur, setBlur] = useState(false);
+
+  const handleScroll = (event: any) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    if (offsetY > 20) {
+      setBlur(true);
+    } else {
+      setBlur(false);
+    }
+  };
+
   /**
    * Used to check user Is already auth or not
    */
@@ -57,15 +67,12 @@ export default function Index() {
 
   return (
     <View className="flex-1">
-      <SafeAreaView
-        edges={["top"]}
-        style={{ backgroundColor: Colors.PRIMARY }}
-      />
-      <View className="bg-PRIMARY h-[280px] w-full absolute" />
-      <View className="flex gap-1 py-2">
-        <Header />
+      <View className="bg-PRIMARY h-[230px] w-full absolute" />
+      <View className="h-full">
         <ScrollView
-          className="px-5 pt-10 overflow-visible"
+          className="px-5 pt-44 overflow-visible"
+          contentContainerStyle={{ flex: 0 }}
+          onScroll={handleScroll}
           refreshControl={
             <RefreshControl
               onRefresh={() => getCategoryList()}
@@ -76,6 +83,7 @@ export default function Index() {
           <CircularChart />
           <CategoryList categoryList={categoryList} />
         </ScrollView>
+        <Header blur={blur} />
       </View>
       <Link href={"/add-new-category"} className="absolute bottom-3 right-3">
         <Ionicons name="add-circle" size={64} color={Colors.PRIMARY} />

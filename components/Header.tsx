@@ -2,10 +2,11 @@ import Colors from "@/utils/Colors";
 import { client } from "@/utils/KindeConfig";
 import { Ionicons } from "@expo/vector-icons";
 import { UserProfile } from "@kinde-oss/react-native-sdk-0-7x";
+import { BlurView } from "expo-blur";
 import React, { useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 
-export default function Header() {
+export default function Header({ blur }: { blur: boolean }) {
   const [user, setUser] = useState({} as UserProfile);
 
   const getUserData = async () => {
@@ -18,7 +19,14 @@ export default function Header() {
   }, []);
 
   return (
-    <View className="flex flex-row items-center gap-3 px-5">
+    <BlurView
+      intensity={blur ? 30 : 0}
+      tint="dark"
+      experimentalBlurMethod="dimezisBlurView"
+      className={`bg-opacity-0 pt-20 pb-3 px-5 absolute top-0 flex flex-row items-center gap-3 ${
+        blur && "shadow-md"
+      }`}
+    >
       <Image
         source={{ uri: user?.picture }}
         style={{
@@ -38,6 +46,6 @@ export default function Header() {
         </View>
         <Ionicons name="notifications" size={24} color="white" />
       </View>
-    </View>
+    </BlurView>
   );
 }
