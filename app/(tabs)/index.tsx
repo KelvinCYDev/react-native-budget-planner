@@ -1,7 +1,7 @@
 import { RefreshControl, ScrollView, View } from "react-native";
 import services from "@/utils/services";
-import { useEffect, useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import { Link, useFocusEffect, useRouter } from "expo-router";
 import { client } from "@/utils/KindeConfig";
 import { supabase } from "@/utils/SupabaseConfig";
 import { UserProfile } from "@kinde-oss/react-native-sdk-0-7x";
@@ -60,10 +60,13 @@ export default function Index() {
     data && setLoading(false);
   };
 
-  useEffect(() => {
-    checkUserAuth();
-    getCategoryList();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      checkUserAuth();
+      getCategoryList();
+      return () => {};
+    }, [])
+  );
 
   return (
     <View className="flex-1">

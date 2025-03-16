@@ -3,9 +3,14 @@ import ItemList from "@/components/CategoryDetail/ItemList";
 import Colors from "@/utils/Colors";
 import { supabase } from "@/utils/SupabaseConfig";
 import { Ionicons } from "@expo/vector-icons";
-import { Link, router, useLocalSearchParams } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Link,
+  router,
+  useFocusEffect,
+  useLocalSearchParams,
+} from "expo-router";
+import React, { useCallback, useState } from "react";
+import { View, TouchableOpacity, ScrollView } from "react-native";
 
 export default function CategoryDetail() {
   const { categoryId } = useLocalSearchParams();
@@ -19,18 +24,23 @@ export default function CategoryDetail() {
     data != null && setCategoryData(data[0]);
   };
 
-  useEffect(() => {
-    categoryId && getCategoryDetail();
-  }, [categoryId]);
+  useFocusEffect(
+    useCallback(() => {
+      categoryId && getCategoryDetail();
+    }, [categoryId])
+  );
 
   return (
     <View className="flex-1 py-7 px-5 mt-10">
-      <TouchableOpacity onPress={() => router.back()}>
+      <TouchableOpacity onPress={() => router.dismissAll()}>
         <Ionicons name="arrow-back-circle" size={44} color="black" />
       </TouchableOpacity>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Info categoryData={categoryData} />
-        <ItemList categoryData={categoryData} />
+        <ItemList
+          categoryData={categoryData}
+          getCategoryDetail={getCategoryDetail}
+        />
       </ScrollView>
       <Link
         href={{
