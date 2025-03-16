@@ -80,7 +80,7 @@ export default function Index() {
             />
           }
         >
-          <CircularChart />
+          <CircularChart categoryList={categoryList} />
           <CategoryList categoryList={categoryList} />
         </ScrollView>
         <Header blur={blur} />

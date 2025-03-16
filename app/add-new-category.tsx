@@ -36,7 +36,6 @@ export default function AddNewCategory() {
         },
       ])
       .select();
-    console.log(data);
     if (data) {
       router.replace({
         pathname: "/category-detail",

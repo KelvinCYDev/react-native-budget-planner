@@ -22,10 +22,7 @@ export default function Header({ blur }: { blur: boolean }) {
     <BlurView
       intensity={blur ? 30 : 0}
       tint="dark"
-      experimentalBlurMethod="dimezisBlurView"
-      className={`bg-opacity-0 pt-20 pb-3 px-5 absolute top-0 flex flex-row items-center gap-3 ${
-        blur && "shadow-md"
-      }`}
+      className={`bg-opacity-0 pt-20 pb-3 px-5 absolute top-0 flex flex-row items-center gap-3 `}
     >
       <Image
         source={{ uri: user?.picture }}
