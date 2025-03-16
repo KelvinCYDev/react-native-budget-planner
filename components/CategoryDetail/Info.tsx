@@ -1,15 +1,40 @@
+import { supabase } from "@/utils/SupabaseConfig";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
+import Toast from "react-native-simple-toast";
 
 export default function Info({
   categoryData,
 }: {
   categoryData: categoryDataType;
 }) {
+  const router = useRouter();
   const [totalCost, setTotalCost] = useState(0);
   const [percTotal, setPercTotal] = useState(0);
-  const onDeleteCategory = () => {};
+  const onDeleteCategory = () => {
+    Alert.alert("Are you Sure", "Do you really want to Delete?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Yes",
+        style: "destructive",
+        onPress: async () => {
+          const { error } = await supabase
+            .from("CategoryItems")
+            .delete()
+            .eq("category_id", categoryData.id);
+          await supabase.from("Category").delete().eq("id", categoryData.id);
+          Toast.show("Category and its items are deleted!", Toast.SHORT);
+          router.replace("/(tabs)");
+        },
+      },
+    ]);
+  };
+
   const calculateTotalPerc = () => {
     let total = 0;
     categoryData?.CategoryItems?.forEach((item: any) => {
